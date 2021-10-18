@@ -1,4 +1,24 @@
-{% extends "layout.html" %}
-{% block content %}
-<center><h1>Home</h1></center>
-{% endblock content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='home.css')}}">
+</head>
+<body>
+
+    <h1 class="Heading">Online Course Management</h1>
+
+    <section>
+        <p class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus ipsam dolorum tenetur natus dolore delectus tempore aliquid rerum. Maxime iure quos incidunt quisquam sequi dolores asperiores quibusdam ut nisi assumenda?</p>
+
+        <a href="{{url_for('login')}}"><div class="button">Getting Started
+        </div></a>
+    </section>
+    
+</body>
+</html>

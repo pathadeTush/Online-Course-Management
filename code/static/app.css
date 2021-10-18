@@ -3,9 +3,6 @@
     margin: 0;
     box-sizing: border-box;
 }
-body{
-    background: url('../images/bg1.eps');
-}
 .nav-item{
     margin: auto;
 }
