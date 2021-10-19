@@ -11,11 +11,11 @@ def home():
 def about():
     return render_template('about.html', title='About')
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     return render_template('register.html', title='Register')
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     return render_template('login.html', title='Login')
 

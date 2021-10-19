@@ -3,6 +3,9 @@
     margin: 0;
     box-sizing: border-box;
 }
+body{
+    background-color: rgba(53, 53, 53, 0.651);
+}
 .nav-item{
     margin: auto;
 }

@@ -11,7 +11,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="{{url_for('static', filename='app.css')}}">
-    
+
 
     {% if title %}
     <title>{{ title }}</title>
@@ -28,7 +28,7 @@
               aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarScroll" >
+            <div class="collapse navbar-collapse justify-content-end" id="navbarScroll">
                 <ul class="navbar-nav my-2 my-lg-0">
                     <li class="nav-item active">
                         <a class="nav-link" href="{{url_for('about')}}">About</a>
