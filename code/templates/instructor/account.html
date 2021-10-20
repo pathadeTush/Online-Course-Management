@@ -1,8 +1,13 @@
-{% extends "layout.html" %}
+{% extends "../layout.html" %}
 {% block content %}
 
 <section class="container card col-xl-5 mt-5 mb-5">
    <h3 class="text-center mt-2">Account</h3>
+   <div class="text-center">
+      <img class="card-img-top" src="{{url_for('static', filename='images/login.jpg')}}" alt="..."
+        style="height: 100px; width: 100px; border-radius: 50px;">
+      <div class="text-muted">username</div>
+   </div>
    <hr>
    <form class="row g-3" action="{{url_for('login')}}" method="POST">
       <div class="col-md-4">
@@ -22,8 +27,8 @@
          <input type="email" class="form-control" id="email" placeholder="Type your college email id...">
       </div>
       <div class="col-md-4">
-         <label for="ID" class="form-label">ID</label>
-         <input type="number" class="form-control" id="ID" maxlength="20" required>
+         <label for="MIS" class="form-label">MIS</label>
+         <input type="number" class="form-control" id="MIS" maxlength="20" required>
       </div>
       <div class="col-md-2">
          <label for="gender" class="form-label">Gender</label>
