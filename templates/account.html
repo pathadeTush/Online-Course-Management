@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section class="container card col-xl-5 mt-5 mb-5">
+   <h3 class="text-center mt-2">Account</h3>
+   <div class="text-center">
+      <img class="card-img-top" src="{{url_for('static', filename='student_pics/')}}{{session['profilepic']}}" alt="..."
+        style="height: 100px; width: 100px; border-radius: 50px;">
+      <div class="text-muted">{{session['MIS']}}</div>
+   </div>
+   <hr>
+   <form class="row g-3" action="" method="POST" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+      <div class="col-md-6">
+         {{ form.firstname.label(class="form-label") }}
+         {% if form.firstname.errors %}
+         {{ form.firstname(class="form-control is-invalid") }}
+         <div class="alert alert-danger" role="alert">
+            {% for error in form.firstname.errors %}
+            <span class="text-danger">{{ error }}</span>
+            {% endfor %}
+         </div>
+         {% else %}
+         {{ form.firstname(class="form-control") }}
+         {% endif %}
+      </div>
+      <div class="col-md-6">
+         {{ form.lastname.label(class="form-label") }}
+         {% if form.lastname.errors %}
+         {{ form.lastname(class="form-control is-invalid") }}
+         <div class="alert alert-danger" role="alert">
+            {% for error in form.lastname.errors %}
+            <span class="text-danger">{{ error }}</span>
+            {% endfor %}
+         </div>
+         {% else %}
+         {{ form.lastname(class="form-control") }}
+         {% endif %}
+      </div>
+      <div class="col-md-6">
+         {{ form.email.label(class="form-label") }}
+         {% if form.email.errors %}
+         {{ form.email(class="form-control is-invalid") }}
+         <div class="alert alert-danger" role="alert">
+            {% for error in form.email.errors %}
+            <span class="text-danger">{{ error }}</span>
+            {% endfor %}
+         </div>
+         {% else %}
+         {{ form.email(class="form-control") }}
+         {% endif %}
+      </div>
+      <div class="col-md-6">
+         <label for="deptID" class="form-label">Department</label>
+         <select class="form-control" name="deptID" id="deptID" required>
+            <option value="civil"> Civil</option>
+            <option value="comp">Computer</option>
+            <option value="elec">Electrical</option>
+            <option value="entc">Electronics & Telecommunication</option>
+            <option value="it">Information Technology</option>
+            <option value="mech">Mechanical</option>
+            <option value="mech">Metallurgy</option>
+            <option value="prod">Production</option>
+         </select>
+      </div>
+      <div class="col-md-4">
+         <label for="gender" class="form-label">Gender</label>
+         <select class="form-control" name="gender" id="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+         </select>
+      </div>
+      <div class="col-md-6">
+         <label for="DOB" class="form-label">DOB</label>
+         <input type="date" class="form-control" name="DOB" id="DOB" required>
+      </div>
+      <div class="col-md-6">
+         <label for="yearEnrolled" class="form-label">Year enrolled</label>
+         <input type="number" class="form-control" name="yearEnrolled" id="yearEnrolled" value="2021" max="2021" min="2000" required>
+      </div>
+      <div class="col-12">
+      {{ form.address.label(class="form-label") }}
+      {% if form.address.errors %}
+      {{ form.address(class="form-control is-invalid") }}
+      <div class="alert alert-danger" role="alert">
+         {% for error in form.address.errors %}
+         <span class="text-danger">{{ error }}</span>
+         {% endfor %}
+      </div>
+      {% else %}
+      {{ form.address(class="form-control") }}
+      {% endif %}
+      </div>
+      <div class="col-6">
+         {{ form.profilepic.label() }}
+         {{ form.profilepic(class="form-control-file") }}
+         {% if form.profilepic.errors %}
+         {% for error in form.profilepic.errors %}
+         <span class="text-danger">{{ error }}</span></br>
+         {% endfor %}
+         {% endif %}
+      </div>
+
+      <div class="col-12 mb-2">
+         {{ form.submit(class="btn btn-outline-primary") }}
+      </div>
+   </form>
+</section>
+
+{% endblock content %}
