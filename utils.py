@@ -11,7 +11,7 @@ def get_hashed_msg(msg):
     msg = hash.hexdigest()
     return msg
 
-def save_picture(form_picture):
+def save_picture(form_picture, dir):
     # creating secret key for name of picture filename. we are saving a secret key for picture file instead of saving the name of file directly
     random_hex = secrets.token_hex(8)
     # filename we will not be using furthur so use '_' to store the filename. Because python will throw an error of unused variable. We can avoid it by using underscore.
@@ -19,7 +19,7 @@ def save_picture(form_picture):
     picture_fn = random_hex + f_ext
     # it creates the path by concatenating app path and static/profile_pics folder path with name of file
     picture_path = os.path.join(
-        current_app.root_path, 'static/student_pics/', picture_fn)
+        current_app.root_path, f'static/{dir}/', picture_fn)
 
     output_size = (125, 125)
     i = Image.open(form_picture)

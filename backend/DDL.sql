@@ -32,3 +32,23 @@ use College;
 -- insert into department values('meta', 'metallurgy');
 -- insert into department values('it', 'information technology');
 -- insert into department values('entc', 'electronics & telecommunication');
+
+CREATE TABLE IF NOT EXISTS instructor_login(
+   instID int Primary Key,
+   password varchar(255)
+);
+
+
+CREATE TABLE IF NOT EXISTS instructor_account(
+   instID int Primary Key,
+   firstname varchar(20) not null,
+   lastname varchar(20) not null,
+   email varchar(40) not null,
+   address varchar(400) not null,
+   gender varchar(6) not null,
+   yearEnrolled varchar(4) not null,
+   DOB date not null,
+   deptID varchar(8) not null,
+   profilepic varchar(100) default 'default.png' null,
+   foreign key (instID) references instructor_login(instID) on delete cascade,
+   foreign key (deptID) references department(deptID));

@@ -6,7 +6,8 @@
    <div class="text-center">
       <img class="card-img-top" src="{{url_for('static', filename='student_pics/')}}{{session['profilepic']}}" alt="..."
         style="height: 100px; width: 100px; border-radius: 50px;">
-      <div class="text-muted">{{session['MIS']}}</div>
+        <div class="text-muted"> {{form.firstname.data}} {{form.lastname.data}} </div>
+        <small class="text-muted"> {{session['ID']}} </small>
    </div>
    <hr>
    <form class="row g-3" action="" method="POST" enctype="multipart/form-data">

@@ -2,21 +2,21 @@
 {% block content %}
 
 <section class="container card col-xl-5 mt-5 mb-5">
-   <h3 class="text-center mt-2">Register</h3>
+   <h3 class="text-center mt-2">Instructor Register</h3>
    <hr>
    <form class="row g-3" action="" method="POST">
       {{ form.hidden_tag() }}
       <div class="col-md-4">
-         {{ form.MIS.label(class="form-label") }}
-         {% if form.MIS.errors %}
-         {{ form.MIS(class="form-control is-invalid") }}
+         {{ form.instID.label(class="form-label") }}
+         {% if form.instID.errors %}
+         {{ form.instID(class="form-control is-invalid") }}
          <div class="alert alert-danger" role="alert">
-            {% for error in form.MIS.errors %}
+            {% for error in form.instID.errors %}
             <span>{{ error }}</span>
             {% endfor %}
          </div>
          {% else %}
-         {{ form.MIS(class="form-control") }}
+         {{ form.instID(class="form-control") }}
          {% endif %}
       </div>
       <div class="col-md-4">
@@ -50,7 +50,8 @@
       </div>
    </form>
    <div class="m-2 text-center">
-      <a class="small" href="{{url_for('login')}}">Already have an account? Login now</a>
+      <a class="small" href="{{url_for('instructor.login')}}">Already have an account? Login now</a> <br>
+      <a class="small" href="{{url_for('student.register')}}">student register?</a>
    </div>
 </section>
 
