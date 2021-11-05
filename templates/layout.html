@@ -62,6 +62,9 @@
                 <ul class="navbar-nav my-2 my-lg-0">
                     {% if 'loggedin' in session %}
                     <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('instructor.mycourses')}}">My Courses</a>
+                    </li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="{{url_for('instructor.account')}}">Account</a>
                     </li>
                     <li class="nav-item">

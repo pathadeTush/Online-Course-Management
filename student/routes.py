@@ -2,6 +2,7 @@ from flask import render_template, url_for, request, redirect, flash, current_ap
 from student.forms import RegistrationForm, LoginForm, AccountForm
 from utils import get_hashed_msg, save_picture
 import os
+
 student = Blueprint('student', __name__)
 
 from app import mysql

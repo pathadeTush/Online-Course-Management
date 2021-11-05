@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="container d-flex align-items-center flex-column">
+   {% for course in courses %}
+   <div class="card mt-2 mb-2" style="width: 18rem;">
+      <img src="{{url_for('static', filename='images/course.jpeg')}}" class="card-img-top" alt="...">
+      <div class="card-body">
+         <h5 class="card-title">{{course['courseName']}}</h5>
+         <h6 class="card-subtitle mb-2 text-muted">{{course['courseId']}}</h6>
+         <div class="d-flex flex-column" style="font-weight: 400; font-size: small;">
+            <div>Credits: {{course['credits']}}</div>
+            <div>Term: {{course['term']}}</div>
+            <div>Seats Left: {{course['seatsLeft']}}</div>
+            <div>Capacity: {{course['maxCap']}}</div>
+         </div>
+      </div>
+   </div>
+   {% endfor %}
+</section>
+{% endblock content %}

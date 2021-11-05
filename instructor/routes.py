@@ -115,6 +115,22 @@ def account():
         session['profilepic'] = form.profilepic.data
         return render_template('instructor/account.html', title='account', form=form)
 
+@instructor.route('/mycourses', methods=['GET'])
+def mycourses():
+    if 'user' in session and session['user'] != 'instructor':
+        return render_template('errors/403.html'), 403
+    if 'loggedin' not in session:
+        flash('You are not logged in!', 'danger')
+        return redirect('instructor.login')
+    instID = session['ID']
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT * FROM course WHERE courseId IN (SELECT courseId FROM handled_by WHERE instID=%s);', (instID,))
+    courses = cursor.fetchall()
+    my_courses = []
+    for course in courses:
+        my_courses.append(course)
+    return render_template('instructor/mycourses.html', title='My Courses', courses=my_courses)
+
 @instructor.route('/logout')
 def logout():
     if 'user' in session and session['user'] != 'instructor':
@@ -124,3 +140,4 @@ def logout():
         return redirect('instructor.login')
     session.clear()
     return redirect(url_for('instructor.login')) 
+
