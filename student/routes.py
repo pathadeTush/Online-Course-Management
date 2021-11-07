@@ -1,5 +1,5 @@
 from flask import render_template, url_for, request, redirect, flash, current_app, session, Blueprint
-from student.forms import RegistrationForm, LoginForm, AccountForm
+from student.forms import RegistrationForm, LoginForm, AccountForm, UnenrollmentForm
 from utils import get_hashed_msg, save_picture
 import os
 
@@ -114,6 +114,55 @@ def account():
             session['new_record'] = True
         session['profilepic'] = form.profilepic.data
         return render_template('student/account.html', title='account', form=form)
+
+
+@student.route('/mycourses', methods=['GET', 'POST'])
+def mycourses():
+    if 'user' in session and session['user'] != 'student':
+        return render_template('errors/403.html'), 403
+    if 'loggedin' not in session:
+        flash('You are not logged in!', 'danger')
+        return redirect(url_for('student.login'))
+    MIS = session['ID']
+    cursor = mysql.connection.cursor()
+    cursor.execute('select courseId, courseName from course where courseId in (select courseId from taken_courses where MIS = %s)', (MIS, ))
+    data = cursor.fetchall()
+    for x in data:
+        cursor.execute('select deptID from course where courseId = %s', (x['courseId'], ))
+        d_id = cursor.fetchone()
+        d_id = d_id['deptID']
+        cursor.execute('insert into enrolled_in values(%s, %s)', (MIS, d_id))
+        mysql.connection.commit()
+    cursor.close()
+    course_list = list(data)
+    classroom = dict() 
+    for i in course_list:
+        cursor = mysql.connection.cursor()
+        cursor.execute('select classID from taken_in where courseId = %s', (i['courseId'], ))
+        classno = cursor.fetchone()['classID']
+        classroom[i['courseName']] = classno
+    cursor.close()
+    form = UnenrollmentForm()
+    if request.method == 'POST' and form.validate_on_submit():
+        MIS = session['ID']
+        course_id = form.course_id.data
+        cursor = mysql.connection.cursor()
+        cursor.execute('delete from taken_courses where MIS = %s and courseId = %s', (MIS, course_id))
+        mysql.connection.commit()
+        cursor.execute('select seatsLeft from course where courseId = %s', (course_id, ))
+        seats = cursor.fetchone()
+        if not seats:
+            flash(f'No enrolled course with courseID {course_id}', 'warning')
+            return redirect(url_for('student.mycourses'))
+        seats_left = str(int(seats['seatsLeft']) + 1)
+        sql = 'update course set course.seatsLeft = %s where courseId = %s'
+        cursor.execute(sql, (seats_left, course_id))
+        mysql.connection.commit()
+        cursor.close()
+        flash('Unenrolled from the course')
+        return redirect('courses')
+    return render_template('student/mycourses.html', courses= course_list, form = form, classroom = classroom)
+
 
 @student.route('/logout')
 def logout():

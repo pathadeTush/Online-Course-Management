@@ -144,27 +144,32 @@ use College;
 -- insert into taken_in values('8001F', 801);
 -- insert into taken_in values('9001F', 402);
 
-CREATE TABLE IF NOT EXISTS handled_by(
-   instID int not null,
-   courseId varchar(20) primary key,
-   foreign key (instID) references instructor_login(instID) on delete cascade,
-   foreign key (courseId) references course(courseId) on delete cascade);
+-- CREATE TABLE IF NOT EXISTS handled_by(
+--    instID int not null,
+--    courseId varchar(20) primary key,
+--    foreign key (instID) references instructor_login(instID) on delete cascade,
+--    foreign key (courseId) references course(courseId) on delete cascade);
 
-insert into handled_by values('11903114','1001P');
-insert into handled_by values('11903114','1001S');
-insert into handled_by values('11903110','2001F');
-insert into handled_by values('11903110','2001P');
-insert into handled_by values('11903089','3001F');
-insert into handled_by values('11903089','3001P');
-insert into handled_by values('11903105','4001P');
-insert into handled_by values('11903105','4001PP');
-insert into handled_by values('11903105','4001S');
-insert into handled_by values('11903014','5001P');
-insert into handled_by values('11903014','5001S');
-insert into handled_by values('11903115','6001F');
-insert into handled_by values('11903073','7001S');
-insert into handled_by values('11903118','8001F');
-insert into handled_by values('11903014','9001F');
+-- insert into handled_by values('11903114','1001P');
+-- insert into handled_by values('11903114','1001S');
+-- insert into handled_by values('11903110','2001F');
+-- insert into handled_by values('11903110','2001P');
+-- insert into handled_by values('11903089','3001F');
+-- insert into handled_by values('11903089','3001P');
+-- insert into handled_by values('11903105','4001P');
+-- insert into handled_by values('11903105','4001PP');
+-- insert into handled_by values('11903105','4001S');
+-- insert into handled_by values('11903014','5001P');
+-- insert into handled_by values('11903014','5001S');
+-- insert into handled_by values('11903115','6001F');
+-- insert into handled_by values('11903073','7001S');
+-- insert into handled_by values('11903118','8001F');
+-- insert into handled_by values('11903014','9001F');
+
+CREATE TABLE IF NOT EXISTS enrolled_in(
+    MIS int,
+    deptID varchar(20) not null,
+    foreign key (MIS));
 
 
 

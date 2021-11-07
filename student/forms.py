@@ -27,3 +27,7 @@ class AccountForm(FlaskForm):
    deptID = StringField('deptID')
    profilepic = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
    submit = SubmitField('Update')
+
+class UnenrollmentForm(FlaskForm):
+   course_id = StringField('Course ID', validators=[DataRequired()])
+   unenroll = SubmitField('Uneroll')   

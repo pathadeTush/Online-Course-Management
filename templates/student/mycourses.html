@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section class="container card col-xl-5 mt-5 mb-5">
+   <hr>
+   <h3 class="text-center mt-2"><i>Enrolled Courses</i></h3>
+   <hr>
+   <div>
+      <table class="table">
+         <thead>
+            <tr>
+               <th scope="col">Course ID</th>
+               <th scope="col">Course Name</th>
+               <th scope="col">Classroom</th>
+            </tr>
+         </thead>
+         <tbody>
+            {% for i in courses %}
+            <tr>
+               <th scope="row">{{ i['courseId'] }}</th>
+               <td>
+                  <a href="{{ url_for('course_page', course_name = i['courseName']) }}">
+                     {{ i['courseName'] }}
+                  </a>
+               </td>
+               <td>{{ classroom[i['courseName']] }}</td>
+            </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+      <br>
+      <br>
+      <br>
+      <br>
+      <hr>
+      <h3 class="text-center mt-2"><i>Unenroll from Courses</i></h3>
+      <hr>
+      <form class="row g-3" action="" method="POST">
+         {{ form.hidden_tag() }}
+         <div>
+            {{ form.course_id.label(class="form-label") }}
+            {% if form.course_id.errors %}
+            {{ form.course_id(class="form-control is-invalid") }}
+            <div class="alert alert-danger" role="alert">
+               {% for error in form.course_id.errors %}
+               <span>{{ error }}</span>
+               {% endfor %}
+            </div>
+            {% else %}
+            {{ form.course_id(class="form-control") }}
+            {% endif %}
+         </div>
+         <div class="col-12 mb-2">
+            {{ form.unenroll(class="btn btn-outline-danger") }}
+         </div>
+      </form>
+   </div>
+</section>
+
+{% endblock content %}

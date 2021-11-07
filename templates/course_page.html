@@ -1,46 +1,44 @@
 {% extends "layout.html" %}
 {% block content %}
 <section class="container d-flex justify-content-around flex-wrap">
-   {% for course in courses %}
    <div class="card mt-2 mb-2" style="width: 18rem;">
       <img src="{{url_for('static', filename='images/course.jpeg')}}" class="card-img-top" alt="...">
       <div class="card-body">
-         <h5 class="card-title">{{course['courseName']}}</h5>
-         <h6 class="card-subtitle mb-2 text-muted">{{course['courseId']}}</h6>
+         <h5 class="card-title text-center">{{details['courseName']}}</h5>
+         <h6 class="card-subtitle mb-2 text-muted text-center">{{details['courseId']}}</h6>
          <div class="d-flex flex-column" style="font-weight: 400; font-size: small;">
             <table class="table table-striped">
                <tr>
                   <td>Credits</td>
-                  <td>{{course['credits']}}</td>
+                  <td>{{details['credits']}}</td>
                </tr>
                <tr>
                   <td>Term</td>
-                  <td>{{course['term']}}</td>
+                  <td>{{details['term']}}</td>
                </tr>
                <tr>
                   <td>Seats Left</td>
-                  <td> {{course['seatsLeft']}} </td>
+                  <td> {{details['seatsLeft']}} </td>
                </tr>
                <tr>
                   <td>Capacity</td>
-                  <td>{{course['maxCap']}}</td>
+                  <td>{{details['maxCap']}}</td>
                </tr>
                <tr>
                   <td>DeptID</td>
-                  <td>{{course['deptID']}}</td>
+                  <td>{{details['deptID']}}</td>
                </tr>
                <tr>
                   <td>Textbook</td>
-                  <td>{{course['textbook']}}</td>
+                  <td>{{details['textbook']}}</td>
                </tr>
                <tr>
                   <td>Reference Textbook</td>
-                  <td>{{course['refTextbook']}}</td>
+                  <td>{{details['refTextbook']}}</td>
                </tr>
             </table>
          </div>
       </div>
    </div>
-   {% endfor %}
 </section>
 {% endblock content %}
