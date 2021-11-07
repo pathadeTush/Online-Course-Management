@@ -4,8 +4,8 @@
 <section class="container card col-xl-5 mt-5 mb-5">
    <h3 class="text-center mt-2">Account</h3>
    <div class="text-center">
-      <img class="card-img-top" src="{{url_for('static', filename='instructor_pics/')}}{{session['profilepic']}}" alt="..."
-        style="height: 100px; width: 100px; border-radius: 50px;">
+      <img class="card-img-top" src="{{url_for('static', filename='instructor_pics/')}}{{session['profilepic']}}"
+        alt="..." style="height: 100px; width: 100px; border-radius: 50px;">
       <div class="text-muted"> Prof. {{form.firstname.data}} {{form.lastname.data}} </div>
       <small class="text-muted"> {{session['ID']}} </small>
    </div>
@@ -54,33 +54,44 @@
       <div class="col-md-6">
          <label for="deptID" class="form-label">Department</label>
          <select class="form-control" name="deptID" id="deptID" required>
-            <option value="civil"> Civil</option>
-            <option value="comp">Computer</option>
-            <option value="elec">Electrical</option>
-            <option value="entc">Electronics & Telecommunication</option>
-            <option value="it">Information Technology</option>
-            <option value="mech">Mechanical</option>
-            <option value="meta">Metallurgy</option>
-            <option value="prod">Production</option>
-            <option value="instru">Instrumentation</option>
+            {% for dept in ['civil', 'comp', 'elec', 'entc', 'it', 'mech', 'meta', 'prod', 'instru'] %}
+            {% if form.deptID.data == dept %}
+            <option value="{{dept}}" selected>{{dept}}</option>
+            {% else %}
+            <option value="{{dept}}">{{dept}}</option>
+            {% endif %}
+            {% endfor %}
          </select>
       </div>
       <div class="col-md-4">
          <label for="gender" class="form-label">Gender</label>
          <select class="form-control" name="gender" id="gender" required>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
+            {% for gender in ['male', 'female', 'other'] %}
+            {% if form.gender.data == gender %}
+            <option value="{{gender}}" selected>{{gender}}</option>
+            {% else %}
+            <option value="{{gender}}">{{gender}}</option>
+            {% endif %}
+            {% endfor %}
          </select>
       </div>
       <div class="col-md-6">
          <label for="DOB" class="form-label">DOB</label>
+         {% if form.DOB.data %}
+         <input type="date" class="form-control" name="DOB" id="DOB" value="{{form.DOB.data}}" required>
+         {% else %}
          <input type="date" class="form-control" name="DOB" id="DOB" required>
+         {% endif %}
       </div>
       <div class="col-md-6">
          <label for="yearEnrolled" class="form-label">Year enrolled</label>
+         {% if form.yearEnrolled.data %}
+         <input type="number" class="form-control" name="yearEnrolled" id="yearEnrolled"
+           value="{{form.yearEnrolled.data}}" max="2021" min="2000" required>
+         {% else %}
          <input type="number" class="form-control" name="yearEnrolled" id="yearEnrolled" value="2021" max="2021"
            min="2000" required>
+         {% endif %}
       </div>
       <div class="col-12">
          {{ form.address.label(class="form-label") }}

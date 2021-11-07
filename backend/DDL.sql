@@ -166,11 +166,6 @@ use College;
 -- insert into handled_by values('11903118','8001F');
 -- insert into handled_by values('11903014','9001F');
 
-CREATE TABLE IF NOT EXISTS enrolled_in(
-    MIS int,
-    deptID varchar(20) not null,
-    foreign key (MIS));
-
 
 
 

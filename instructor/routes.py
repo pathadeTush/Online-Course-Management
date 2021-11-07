@@ -46,6 +46,14 @@ def login():
             session['ID'] = instID
             session['loggedin'] = True
             session['user'] = 'instructor'
+            cursor = mysql.connection.cursor()
+            cursor.execute('SELECT * FROM instructor_account WHERE instID=%s', (instID,))
+            data = cursor.fetchone()
+            cursor.close()
+            if not data:
+                session['account_details_added'] = True
+            else:
+                session['account_details_added'] = False
             flash('Logged in successfully!', 'success')
             return redirect(url_for('instructor.account'))
         else:
@@ -92,6 +100,7 @@ def account():
             cursor.execute('UPDATE instructor_account SET firstname=%s, lastname=%s, email=%s, address=%s, gender=%s, yearEnrolled=%s, DOB=%s, deptID=%s, profilepic=%s WHERE instID=%s', (firstname, lastname, email, address, gender, yearEnrolled, DOB, deptID, session['profilepic'], instID))
         mysql.connection.commit()
         cursor.close()
+        session['account_details_added'] = True
         flash('Account details updated successfully!', 'success')
         return redirect(url_for('instructor.account'))
     else:
@@ -107,11 +116,14 @@ def account():
             form.gender.data = data['gender']
             form.yearEnrolled.data = data['yearEnrolled']
             form.DOB.data = data['DOB']
+            form.deptID.data = data['deptID']
             form.profilepic.data = data['profilepic']
             session['new_record'] = False
+            session['account_details_added'] = True
         else:
             form.profilepic.data = 'default.png'
             session['new_record'] = True
+            session['account_details_added'] = False
         session['profilepic'] = form.profilepic.data
         return render_template('instructor/account.html', title='account', form=form)
 
@@ -122,6 +134,9 @@ def mycourses():
     if 'loggedin' not in session:
         flash('You are not logged in!', 'danger')
         return redirect('instructor.login')
+    if not session['account_details_added']:
+        flash('Please add your account details first!', 'warning')
+        return redirect(url_for('instructor.account'))
     instID = session['ID']
     cursor = mysql.connection.cursor()
     cursor.execute('SELECT * FROM course WHERE courseId IN (SELECT courseId FROM handled_by WHERE instID=%s);', (instID,))
@@ -138,6 +153,9 @@ def logout():
     if 'loggedin' not in session:
         flash('You are not logged in!', 'danger')
         return redirect('instructor.login')
+    if not session['account_details_added']:
+        flash('Please add your account details first!', 'warning')
+        return redirect(url_for('instructor.account'))
     session.clear()
     return redirect(url_for('instructor.login')) 
 

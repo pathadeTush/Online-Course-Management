@@ -31,6 +31,9 @@ def courses():
     if 'loggedin' not in session:
         flash('You are not logged in!', 'danger')
         return redirect(url_for('student.login'))
+    if not session['account_details_added']:
+        flash('Please add your account details first!', 'warning')
+        return redirect(url_for(f'{session["user"]}.account'))
     cursor = mysql.connection.cursor()
     cursor.execute('select * from course')
     fetched_courses = cursor.fetchall()
@@ -118,6 +121,9 @@ def course_page(course_name):
     if 'loggedin' not in session:
         flash('You are not logged in!', 'danger')
         return redirect(url_for('student.login'))
+    if not session['account_details_added']:
+        flash('Please add your account details first!', 'warning')
+        return redirect(url_for(f'{session["user"]}.account'))
     course_dict = {'Artificial Intelligence': '1001S', 'EE': '2001F', 'Combustion Engines': '3001F','Material Strengths': '4001S', 'Control Systems': '5001S', 'Automation and Robotics': '6001F', 'Metals, Alloys and Composites': '7001S', 'IOT Systems': '8001F', 'Microprocessors and system arch': '9001F'}
     course_dict['Theory of Computation'] = '1001P'
     course_dict['BEE'] = '2001P'

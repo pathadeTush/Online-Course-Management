@@ -46,6 +46,14 @@ def login():
             session['ID'] = MIS
             session['loggedin'] = True
             session['user'] = 'student'
+            cursor = mysql.connection.cursor()
+            cursor.execute('SELECT * FROM student_account WHERE MIS=%s', (MIS,))
+            data = cursor.fetchone()
+            cursor.close()
+            if not data:
+                session['account_details_added'] = True
+            else:
+                session['account_details_added'] = False
             flash('Logged in successfully!', 'success')
             return redirect(url_for('student.account'))
         else:
@@ -92,6 +100,7 @@ def account():
             cursor.execute('UPDATE student_account SET firstname=%s, lastname=%s, email=%s, address=%s, gender=%s, yearEnrolled=%s, DOB=%s, deptID=%s, profilepic=%s WHERE MIS=%s', (firstname, lastname, email, address, gender, yearEnrolled, DOB, deptID, session['profilepic'], MIS))
         mysql.connection.commit()
         cursor.close()
+        session['account_details_added'] = True
         flash('Account details updated successfully!', 'success')
         return redirect(url_for('student.account'))
     else:
@@ -107,11 +116,14 @@ def account():
             form.gender.data = data['gender']
             form.yearEnrolled.data = data['yearEnrolled']
             form.DOB.data = data['DOB']
+            form.deptID.data = data['deptID']
             form.profilepic.data = data['profilepic']
             session['new_record'] = False
+            session['account_details_added'] = True
         else:
             form.profilepic.data = 'default.png'
             session['new_record'] = True
+            session['account_details_added'] = False
         session['profilepic'] = form.profilepic.data
         return render_template('student/account.html', title='account', form=form)
 
@@ -123,6 +135,9 @@ def mycourses():
     if 'loggedin' not in session:
         flash('You are not logged in!', 'danger')
         return redirect(url_for('student.login'))
+    if not session['account_details_added']:
+        flash('Please add your account details first!', 'warning')
+        return redirect(url_for('student.account'))
     MIS = session['ID']
     cursor = mysql.connection.cursor()
     cursor.execute('select courseId, courseName from course where courseId in (select courseId from taken_courses where MIS = %s)', (MIS, ))
@@ -131,7 +146,6 @@ def mycourses():
         cursor.execute('select deptID from course where courseId = %s', (x['courseId'], ))
         d_id = cursor.fetchone()
         d_id = d_id['deptID']
-        cursor.execute('insert into enrolled_in values(%s, %s)', (MIS, d_id))
         mysql.connection.commit()
     cursor.close()
     course_list = list(data)
@@ -171,5 +185,8 @@ def logout():
     if 'loggedin' not in session:
         flash('You are not logged in!', 'danger')
         return redirect(url_for('student.login'))
+    if not session['account_details_added']:
+        flash('Please add your account details first!', 'warning')
+        return redirect(url_for('student.account'))
     session.clear()
     return redirect(url_for('student.login'))

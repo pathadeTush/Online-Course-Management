@@ -6,7 +6,7 @@
    <h3 class="text-center mt-2">Available Courses</h3>
    <hr>
    <div>
-      <table class="table">
+      <table class="table table-striped">
          <thead>
             <tr>
                <th scope="col">Course ID</th>
@@ -30,6 +30,7 @@
             {% endfor %}
          </tbody>
       </table>
+      {% if session['user'] == 'student' %}
       <br>
       <br>
       <br>
@@ -56,6 +57,7 @@
             {{ form.enroll(class="btn btn-outline-primary") }}
          </div>
       </form>
+      {% endif %}
    </div>
 </section>
 
