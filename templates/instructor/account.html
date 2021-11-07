@@ -54,7 +54,7 @@
       <div class="col-md-6">
          <label for="deptID" class="form-label">Department</label>
          <select class="form-control" name="deptID" id="deptID" required>
-            {% for dept in ['civil', 'comp', 'elec', 'entc', 'it', 'mech', 'meta', 'prod', 'instru'] %}
+            {% for dept in ['civil', 'comp', 'elec', 'mech', 'prod', 'instru', 'meta'] %}
             {% if form.deptID.data == dept %}
             <option value="{{dept}}" selected>{{dept}}</option>
             {% else %}

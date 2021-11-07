@@ -42,7 +42,11 @@ def courses():
     for i in fetched_courses:
         res.append(i)
         cursor.execute('select classID from taken_in where courseId = %s', (i['courseId'], ))
-        classno = cursor.fetchone()['classID']
+        classno = cursor.fetchone()
+        if not classno:
+            flash('No Classroom Assigned!', 'danger')
+            return redirect(url_for(f'{session["user"]}.account'))
+        classno = classno['classID']
         classroom[i['courseName']] = classno
         link = str(i['courseName'])
         if link != i['courselink']:

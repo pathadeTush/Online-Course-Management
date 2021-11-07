@@ -5,13 +5,13 @@ from wtforms.validators import DataRequired, Length, EqualTo, NumberRange, Email
 from wtforms.fields.html5 import EmailField
 
 class RegistrationForm(FlaskForm):
-   instID = IntegerField('instID', validators=[DataRequired(message="must be integer"), NumberRange(min=10000000, max=99999998, message="must be 8 digit")])
+   instID = IntegerField('instID', validators=[DataRequired(message="must be integer"), NumberRange(min=100000, max=999998, message="must be 6 digit")])
    password = PasswordField('Password', validators=[DataRequired(), Length(min=6, max=15)])
    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
    submit = SubmitField('Register')
 
 class LoginForm(FlaskForm):
-   instID = IntegerField('instID', validators=[DataRequired(message="must be integer"), NumberRange(min=10000000, max=99999998, message="must be 8 digit")])
+   instID = IntegerField('instID', validators=[DataRequired(message="must be integer"), NumberRange(min=100000, max=999998, message="must be 6 digit")])
    password = PasswordField('Password', validators=[DataRequired(), Length(min=6, max=15)])
    submit = SubmitField('Login')
 
