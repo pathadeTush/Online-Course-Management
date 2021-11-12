@@ -150,6 +150,42 @@ insert into prereq values('PE1003', 'PE1004');
 insert into prereq values('MT1004', 'MT1002');
 insert into prereq values('MT1001', 'ME1003');
 
+-- Instructor Login entries
+
+insert into instructor_login values('119030','a5c97c9394d8ac36340be9f369aea0b4');
+insert into instructor_login values('119031','a5c97c9394d8ac36340be9f369aea0b4');
+insert into instructor_login values('119040','a5c97c9394d8ac36340be9f369aea0b4');
+insert into instructor_login values('119041','a5c97c9394d8ac36340be9f369aea0b4');
+insert into instructor_login values('119050','a5c97c9394d8ac36340be9f369aea0b4');
+insert into instructor_login values('119051','a5c97c9394d8ac36340be9f369aea0b4');
+insert into instructor_login values('119060','a5c97c9394d8ac36340be9f369aea0b4');
+insert into instructor_login values('119061','a5c97c9394d8ac36340be9f369aea0b4');
+insert into instructor_login values('119070','a5c97c9394d8ac36340be9f369aea0b4');
+insert into instructor_login values('119071','a5c97c9394d8ac36340be9f369aea0b4');
+insert into instructor_login values('119080','a5c97c9394d8ac36340be9f369aea0b4');
+insert into instructor_login values('119081','a5c97c9394d8ac36340be9f369aea0b4');
+insert into instructor_login values('119090','a5c97c9394d8ac36340be9f369aea0b4');
+insert into instructor_login values('119091','a5c97c9394d8ac36340be9f369aea0b4');
+
+-- Instructor Account entries
+
+insert into instructor_account values('119030', 'Mahendra', 'Dhoni', 'md@coep.ac.in', 'COEP hostel, Pune', 'male', '2001', '1976-2-10', 'comp', DEFAULT);
+insert into instructor_account values('119031', 'Virat', 'Kohli', 'vk@coep.ac.in', 'COEP hostel, Pune', 'male', '2000', '1969-3-1', 'comp', DEFAULT);
+insert into instructor_account values('119040', 'Ravi', 'Jadeja', 'ej@coep.ac.in', 'COEP hostel, Pune', 'male', '2000', '1974-4-21', 'elec', DEFAULT);
+insert into instructor_account values('119041', 'Rohit', 'Sharma', 'rs@coep.ac.in', 'COEP hostel, Pune', 'male', '2002', '1980-5-11', 'elec', DEFAULT);
+insert into instructor_account values('119050', 'Shikhar', 'Dhawan', 'sd@coep.ac.in', 'COEP hostel, Pune', 'male', '2002', '1983-6-17', 'mech', DEFAULT);
+insert into instructor_account values('119051', 'Rishabh', 'Pant', 'rp@coep.ac.in', 'COEP hostel, Pune', 'male', '2003', '1987-7-18', 'mech', DEFAULT);
+insert into instructor_account values('119060', 'Hardik', 'Pandya', 'hp@coep.ac.in', 'COEP hostel, Pune', 'male', '2003', '1971-8-16', 'civil', DEFAULT);
+insert into instructor_account values('119061', 'Siddharth', 'Kaul', 'sk@coep.ac.in', 'COEP hostel, Pune', 'male', '2003', '1973-9-14', 'civil', DEFAULT);
+insert into instructor_account values('119070', 'Ishant', 'Sharma', 'is@coep.ac.in', 'COEP hostel, Pune', 'male', '2002', '1974-10-20', 'instru', DEFAULT);
+insert into instructor_account values('119071', 'Yuzi', 'Chahal', 'yc@coep.ac.in', 'COEP hostel, Pune', 'male', '2003', '1975-11-22', 'instru', DEFAULT);
+insert into instructor_account values('119080', 'Mohd.', 'Shami', 'ms@coep.ac.in', 'COEP hostel, Pune', 'male', '2002', '1982-12-31', 'prod', DEFAULT);
+insert into instructor_account values('119081', 'Ajinkya', 'Rahane', 'ar@coep.ac.in', 'COEP hostel, Pune', 'male', '2000', '1985-1-6', 'prod', DEFAULT);
+insert into instructor_account values('119090', 'Rahul', 'Dravid', 'rd@coep.ac.in', 'COEP hostel, Pune', 'male', '2001', '1986-2-3', 'meta', DEFAULT);
+insert into instructor_account values('119091', 'Sachin', 'Tendulkar', 'st@coep.ac.in', 'COEP hostel, Pune', 'male', '2001', '1988-3-19', 'meta', DEFAULT);
+
+
+
 -- Handled_by entries
 
 -- Comp
@@ -158,13 +194,13 @@ insert into handled_by values('119030','CS1002');
 insert into handled_by values('119031','CS1003');
 insert into handled_by values('119031','CS1004');
 
---Elec
+-- Elec
 insert into handled_by values('119040','EE1001');
 insert into handled_by values('119040','EE1002');
 insert into handled_by values('119041','EE1003');
 insert into handled_by values('119041','EE1004');
 
---Mech
+-- Mech
 insert into handled_by values('119050','ME1001');
 insert into handled_by values('119050','ME1002');
 insert into handled_by values('119051','ME1003');
@@ -215,7 +251,7 @@ insert into classroom values(404, 'south campus', 100, 'civil');
 insert into classroom values(501, 'south campus', 110, 'instru');
 insert into classroom values(502, 'north campus', 90, 'instru');
 insert into classroom values(503, 'north campus', 100, 'instru');
-insert into classroom values(504 'south campus', 90, 'instru');
+insert into classroom values(504, 'south campus', 90, 'instru');
 insert into classroom values(601, 'south campus', 110, 'prod');
 insert into classroom values(602, 'north campus', 90, 'prod');
 insert into classroom values(603, 'south campus', 100, 'prod');
@@ -224,24 +260,6 @@ insert into classroom values(701, 'north campus', 100, 'meta');
 insert into classroom values(702, 'south campus', 90, 'meta');
 insert into classroom values(703, 'north campus', 100, 'meta');
 insert into classroom values(704, 'south campus', 80, 'meta');
-
--- Instructor Account entries
-
-    insert into instructor_account values('119030', 'Mahendra', 'Dhoni', 'md@coep.ac.in', 'COEP hostel, Pune', 'male', '2001', '10/2/1976');
-    insert into instructor_account values('119031', 'Virat', 'Kohli', 'vk@coep.ac.in', 'COEP hostel, Pune', 'male', '2000', '1/3/1969');
-    insert into instructor_account values('119040', 'Ravi', 'Jadeja', 'ej@coep.ac.in', 'COEP hostel, Pune', 'male', '2000', '21/4/1974');
-    insert into instructor_account values('119041', 'Rohit', 'Sharma', 'rs@coep.ac.in', 'COEP hostel, Pune', 'male', '2002', '11/5/1980');
-    insert into instructor_account values('119050', 'Shikhar', 'Dhawan', 'sd@coep.ac.in', 'COEP hostel, Pune', 'male', '2002', '17/6/1983');
-    insert into instructor_account values('119051', 'Rishabh', 'Pant', 'rp@coep.ac.in', 'COEP hostel, Pune', 'male', '2003', '18/7/1987');
-    insert into instructor_account values('119060', 'Hardik', 'Pandya', 'hp@coep.ac.in', 'COEP hostel, Pune', 'male', '2003', '16/8/1971');
-    insert into instructor_account values('119061', 'Siddharth', 'Kaul', 'sk@coep.ac.in', 'COEP hostel, Pune', 'male', '2003', '14/9/1973');
-    insert into instructor_account values('119070', 'Ishant', 'Sharma', 'is@coep.ac.in', 'COEP hostel, Pune', 'male', '2002', '20/10/1974');
-    insert into instructor_account values('119071', 'Yuzi', 'Chahal', 'yc@coep.ac.in', 'COEP hostel, Pune', 'male', '2003', '22/11/1975');
-    insert into instructor_account values('119080', 'Mohd.', 'Shami', 'ms@coep.ac.in', 'COEP hostel, Pune', 'male', '2002', '31/12/1982');
-    insert into instructor_account values('119081', 'Ajinkya', 'Rahane', 'ar@coep.ac.in', 'COEP hostel, Pune', 'male', '2000', '6/1/1985');
-    insert into instructor_account values('119090', 'Rahul', 'Dravid', 'rd@coep.ac.in', 'COEP hostel, Pune', 'male', '2001', '3/2/1986');
-    insert into instructor_account values('119091', 'Sachin', 'Tendulkar', 'st@coep.ac.in', 'COEP hostel, Pune', 'male', '2001', '19/3/1988');
-
 
 
 -- Taken_in entries
@@ -252,15 +270,15 @@ insert into taken_in values('CS1002', 102);
 insert into taken_in values('CS1003', 103);
 insert into taken_in values('CS1004', 104);
 
---Elec
+-- Elec
 insert into taken_in values('EE1001', 201);
 insert into taken_in values('EE1002', 202);
 insert into taken_in values('EE1003', 203);
 insert into taken_in values('EE1004', 204);
 
---Mech
+-- Mech
 insert into taken_in values('ME1001', 301);
-insert into taken_in values('ME1002', 302;
+insert into taken_in values('ME1002', 302);
 insert into taken_in values('ME1003', 303);
 insert into taken_in values('ME1004', 304);
 
